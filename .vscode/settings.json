@@ -1,0 +1,19 @@
+{
+  "eslint.alwaysShowStatus": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "cSpell.words": [
+    "Actionsheet",
+    "Entypo",
+    "Ionicon",
+    "Ionicons",
+    "persistor",
+    "Signup",
+    "Unfollow",
+    "Viewability",
+    "zipcode",
+    "Zoomable"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
+}

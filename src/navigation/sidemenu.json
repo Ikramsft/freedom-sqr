@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "target": "Profile",
+    "title": "Profile",
+    "visible": true
+  },
+  {
+    "id": 2,
+    "target": "Security",
+    "title": "Security",
+    "visible": true
+  },
+  {
+    "id": 3,
+    "target": "Billing",
+    "title": "Billing",
+    "visible": true
+  },
+  {
+    "id": 4,
+    "target": "Notifications",
+    "title": "Notifications",
+    "visible": true
+  },
+  {
+    "id": 5,
+    "target": "AppSettings",
+    "title": "App Settings",
+    "visible": true
+  },
+  {
+    "id": 6,
+    "target": "Affiliate",
+    "title": "Affiliate",
+    "visible": true
+  },
+  {
+    "id": 7,
+    "target": "MapBox",
+    "title": "MapBox",
+    "visible": true
+  }
+]

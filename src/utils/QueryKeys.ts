@@ -1,0 +1,57 @@
+/**
+ * @format
+ */
+const QueryKeys = {
+  userProfile: 'userProfile',
+  cardList: 'cardList',
+  interestList: 'interestList',
+  locationList: 'locationList',
+  newsList: 'newsList',
+  beyondHeadlines: 'beyondHeadlines',
+  featuredNews: 'featuredNews',
+  featuredPosts: 'featuredPosts',
+  following: 'following',
+  categoryList: 'categoryList',
+  stateList: 'stateList',
+  businessInfo: 'businessInfo',
+  businessSinglePost: 'businessSinglePost',
+  providerList: 'providerList',
+  providerDetails: 'providerDetails',
+  providerPosts: 'providerPosts',
+  providerMedia: 'providerMedia',
+  usersProviderList: 'usersProviderList',
+  allPodcastsList: 'allPodcastsList',
+  articleDetails: 'articleDetails',
+  commentList: 'commentList',
+  resourceList: 'resourceList',
+  PodcastsEpisodeList: 'PodcastsEpisodeList',
+  BusinessTabList: 'BusinessTabList',
+  podcastData: 'podcastData',
+  podcastsEpisodeList: 'podcastsEpisodeList',
+  featuredPodcasts: 'featuredPodcasts',
+  podcastDetails: 'podcastDetails',
+  podcastCommentList: 'podcastCommentList',
+  allPodcastTimeline: 'allPodcastTimeline',
+  // business tabs
+  featuredBusiness: 'featuredBusiness',
+  allBusiness: 'allBusiness',
+  recentBusiness: 'recentBusiness',
+  businessDetails: 'businessDetails',
+  businessPosts: 'businessPosts',
+  businessFollows: 'businessFollows',
+  businessMedia: 'businessMedia',
+  preferenceBusinessList: 'preferenceBusinessList',
+  preferencePodcastsList: 'preferencePodcastsList',
+  preferenceProvidersList: 'preferenceProvidersList',
+  singlePostComments: 'singlePostComments',
+  searchAll: 'searchAll',
+  newsProviderWall: 'newsProviderWall',
+  showAds: 'showAds',
+  affiliateLink: 'affiliateLink',
+  achPaymentList: 'achPaymentList',
+  affiliateStatistics: 'affiliateStatistics',
+};
+
+export type QueryKeysType = keyof typeof QueryKeys;
+
+export {QueryKeys};

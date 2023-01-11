@@ -1,0 +1,83 @@
+fastlane_version '2.206.2'
+
+# before_all do
+#   ensure_git_branch
+#   ensure_git_status_clean
+#   git_pull
+# end
+
+platform :ios do
+   # iOS Lanes
+   desc "Deploy the ios build to browserstack"
+   lane :browserstackRelease do
+
+     # get current BASE_ENV label from .env file
+     BASE_ENV = 'DEV'
+     if ENV['BASE_ENV']
+       BASE_ENV = ENV['BASE_ENV']
+     end
+ 
+     # Get current version and build number
+     version = get_version_number(xcodeproj: './ios/freedomSquareMobile.xcodeproj')
+     build_number = get_build_number(xcodeproj: './ios/freedomSquareMobile.xcodeproj')
+ 
+     # generate Release build
+     gym(
+       workspace: "./ios/freedomSquareMobile.xcworkspace",
+       configuration: "Release",
+       scheme: "freedomSquareMobile",
+       silent: true,
+       clean: true,
+       output_directory: "./build", # Destination directory. Defaults to current directory.
+       export_method: "development",
+       output_name: "FreedomSquare_#{BASE_ENV}_#{version}_#{build_number}.ipa"  # specify the name of the .ipa file to generate (including file extension)
+     )
+ 
+     # upload build to browserstack
+     upload_to_browserstack_app_live(
+      browserstack_username: "supriyananga_PSbniJ",
+      browserstack_access_key: "vE6Xb7qEdGq9wzYDRWEq",
+     )
+ 
+     # increase build number by 1
+     increment_build_number(xcodeproj: './ios/freedomSquareMobile.xcodeproj')
+
+   end
+end
+
+platform :android do
+  # Android Lanes
+
+  desc "Deploy the android build to browserstack"
+   lane :browserstackRelease do
+ 
+    # gradle(task: 'clean', project_dir: 'android/')
+
+    # get current BASE_ENV label from .env file
+    BASE_ENV = 'DEV'
+    if ENV['BASE_ENV']
+      BASE_ENV = ENV['BASE_ENV']
+    end
+
+    version_code = android_get_version_code(gradle_file: "android/app/build.gradle")
+
+    # build_android_app is a built-in fastlane action.
+    gradle(task: 'assemble', build_type: 'Release', print_command: false, project_dir: 'android/') 
+    
+    # Rename apk file
+    APK_LOCATION = "#{lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]}"
+    NEW_LOCATION = "#{lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]}"
+    NEW_LOCATION.sub! 'app-release', "FreedomSquare_#{BASE_ENV}_#{version_code}"
+    sh("mv #{APK_LOCATION} #{NEW_LOCATION}")
+
+    # upload build to browserstack
+    upload_to_browserstack_app_live(
+      browserstack_username: "supriyananga_PSbniJ",
+      browserstack_access_key: "vE6Xb7qEdGq9wzYDRWEq",
+      file_path: NEW_LOCATION
+    )
+
+    android_set_version_code( version_code:version_code.to_i + 1, gradle_file: "android/app/build.gradle")
+
+   end
+end
